@@ -3,7 +3,7 @@
         <div class="container-fluid px-4">
             <!-- Logo -->
             <a class="navbar-brand" href="/">
-                <p class="fs-4 fw-bold m-0" style="color: #2D3648;">EduFun</p>
+                <p class="fs-4 fw-medium m-0 logo-text">EduFun</p>
             </a>
 
             <!-- Mobile Toggle Button -->
@@ -15,10 +15,10 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav align-items-md-center gap-1 gap-md-3">
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('home.index') }}">Home</a>
+                        <a class="nav-link {{ Request::routeIs('home.index') ? 'active' : '' }}" href="{{ route('home.index') }}">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle {{ Request::routeIs('article.index') || Request::routeIs('article.show') ? 'active' : '' }}" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Category
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -27,13 +27,13 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('writer.index') }}">Writers</a>
+                        <a class="nav-link {{ Request::routeIs('writer.index') || Request::routeIs('writer.show') ? 'active' : '' }}" href="{{ route('writer.index') }}">Writers</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('about.index') }}">About Us</a>
+                        <a class="nav-link {{ Request::routeIs('about.index') ? 'active' : '' }}" href="{{ route('about.index') }}">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('popular.index') }}">Popular</a>
+                        <a class="nav-link {{ Request::routeIs('popular.index') ? 'active' : '' }}" href="{{ route('popular.index') }}">Popular</a>
                     </li>
                 </ul>
             </div>

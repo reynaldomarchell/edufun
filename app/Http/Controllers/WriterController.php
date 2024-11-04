@@ -12,7 +12,8 @@ class WriterController extends Controller
      */
     public function index()
     {
-        return view('writer.index');
+        $writers = Writer::all();
+        return view('writer.index', ['writers' => $writers]);
     }
 
     /**
@@ -34,9 +35,12 @@ class WriterController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Writer $writer)
+    public function show(string $id)
     {
-        return view('writer.show');
+        $writer = Writer::find($id);
+        $articles = $writer->articles;
+
+        return view('writer.show', ['writer'=> $writer, 'articles' => $articles]);
     }
 
     /**

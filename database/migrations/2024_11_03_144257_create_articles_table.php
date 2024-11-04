@@ -17,6 +17,7 @@ return new class extends Migration
             $table->longText('content');
             $table->enum('category', ['IM', 'SE']);
             $table->string('image');
+            $table->bigInteger('view_count')->default(0);
             $table->foreignId('writer_id')->constrained('writers')->onDelete('cascade');
             $table->timestamps();
         });

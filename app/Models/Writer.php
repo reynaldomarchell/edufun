@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Writer extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+
+    public function articles(){
+        return $this->hasMany(Article::class);
+    }
 }

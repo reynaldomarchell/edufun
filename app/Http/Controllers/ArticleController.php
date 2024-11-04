@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ArticleController extends Controller
 {
@@ -12,7 +13,9 @@ class ArticleController extends Controller
      */
     public function index(string $category)
     {
-        return view('article.index', ['category'=> $category]);
+        $articles = Article::with('writer')->where("category", $category)->get();
+
+        return view('article.index', ['articles' => $articles, 'category'=> $category]);
     }
 
     /**
@@ -34,9 +37,14 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Article $article)
+    public function show(string $id)
     {
-        return view('article.show');
+        $article = Article::with('writer')->where("id", $id)->first();
+
+        // update the view_count column +1
+        $article->increment('view_count');
+
+        return view('article.show', ['article' => $article]);
     }
 
     /**

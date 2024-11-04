@@ -6,15 +6,93 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>EduFun</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <style>
+        .logo-text {
+            color: #2D3648;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .logo-text:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #2D3648;
+            transition: width 0.3s ease;
+        }
+
+        .logo-text:hover {
+            transform: scale(1.05);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .logo-text:hover:after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: #4365a8 !important;
+            position: relative;
+        }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #2D3648;
+        }
+        .writer-image-wrapper {
+            width: 250px;
+            height: 250px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .writer-image-wrapper:hover {
+            transform: translateY(-5px);
+        }
+
+        .writer-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 768px) {
+            .writer-image-wrapper {
+                width: 200px;
+                height: 200px;
+            }
+
+            h1.display-4 {
+                font-size: calc(1.8rem + 1.5vw);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .writer-image-wrapper {
+                width: 180px;
+                height: 180px;
+            }
+        }
+    </style>
 </head>
 <body>
     @include('layout.header')
-
-    <div class="container-fluid p-4">
+    
+    <div class="container-fluid p-4 overflow-scroll" 
+        {{-- style="max-height: calc(100vh - 11rem);" --}}
+        >
         @yield('content')
     </div>
-
+    
     @include('layout.footer')
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
